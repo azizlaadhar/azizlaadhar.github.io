@@ -15,14 +15,14 @@ const PAPERS = [
 
   {
     year: 2026,
-    title: "An autonomous AI agent for universal behavior analysis",
-    venue: "Preprint, bioRxiv",
-    authors: "Liu Lab of Bioelectronics, Harvard. I built the evaluation benchmark and harness.",
+    title: "BEHAVE: a benchmark for quantitative behavioral analysis from video by AI agents",
+    venue: "In progress, Liu Lab of Bioelectronics, Harvard",
+    authors: "My work. It scores BehaveAgent, the lab's agent, which I did not author.",
     summary:
       "Scoring an agent whose output is a judgement about behaviour, where trained humans disagree with each other. Eight scoring families, with tolerances derived from instrument resolution and measured annotator disagreement rather than chosen.",
     links: [
-      { label: "Preprint", href: "https://www.biorxiv.org/content/10.1101/2025.05.15.653585v1" },
-      { label: "Code", href: "https://github.com/LiuLab-Bioelectronics-Harvard/BehaveAgent" }
+      { label: "BehaveAgent preprint", href: "https://www.biorxiv.org/content/10.1101/2025.05.15.653585v1" },
+      { label: "BehaveAgent code", href: "https://github.com/LiuLab-Bioelectronics-Harvard/BehaveAgent" }
     ]
   },
 
