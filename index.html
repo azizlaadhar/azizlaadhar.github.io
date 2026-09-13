@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Aziz Laadhar</title>
+<meta name="description" content="Research reports and code.">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<a class="skip" href="#papers">Skip to reports</a>
+
+<header>
+  <h1 data-site="name">Aziz Laadhar</h1>
+  <p class="tagline" data-site="tagline"></p>
+  <p class="toplinks" id="toplinks"></p>
+</header>
+
+<main>
+  <h2 id="papers">Reports</h2>
+  <ol class="list" id="list"></ol>
+
+  <h2>About</h2>
+  <div class="prose">
+    <p>
+      I'm finishing an MSc in Data Science at EPFL, with the thesis at the Liu Lab of
+      Bioelectronics at Harvard, where I built the evaluation layer for an autonomous
+      agent that analyses behaviour from video.
+    </p>
+    <p>
+      Before that: physics-guided inversion at Schlumberger-Doll Research, forecasting
+      on a European power desk, and graph-based reinforcement learning for constrained
+      routing at EPFL's VITA lab.
+    </p>
+  </div>
+</main>
+
+<footer>
+  <p>Reports are PDFs of the original write-ups, unedited.</p>
+</footer>
+
+<script src="papers.js"></script>
+<script>
+(function () {
+  var S = (typeof SITE !== 'undefined') ? SITE : {};
+
+  document.querySelectorAll('[data-site]').forEach(function (el) {
+    var v = S[el.getAttribute('data-site')];
+    if (v) el.textContent = v;
+  });
+  if (S.name) document.title = S.name;
+
+  var top = document.getElementById('toplinks');
+  [
+    S.email    && { label: 'Email',    href: 'mailto:' + S.email },
+    S.github   && { label: 'GitHub',   href: 'https://github.com/' + S.github },
+    S.linkedin && { label: 'LinkedIn', href: S.linkedin },
+    S.scholar  && { label: 'Scholar',  href: S.scholar },
+    S.cv       && { label: 'CV',       href: S.cv }
+  ].filter(Boolean).forEach(function (l) {
+    var a = document.createElement('a');
+    a.href = l.href;
+    a.textContent = l.label;
+    if (/^https?:/i.test(l.href)) a.rel = 'noopener';
+    top.appendChild(a);
+  });
+
+  var list = document.getElementById('list');
+  var data = (typeof PAPERS !== 'undefined' && Array.isArray(PAPERS)) ? PAPERS : [];
+
+  data.forEach(function (p) {
+    var li = document.createElement('li');
+    li.className = 'entry';
+
+    var h = document.createElement('h3');
+    h.className = 'title';
+    h.textContent = p.title || 'Untitled';
+    li.appendChild(h);
+
+    var meta = document.createElement('p');
+    meta.className = 'meta';
+    meta.textContent = [p.year, p.venue].filter(Boolean).join(' — ');
+    li.appendChild(meta);
+
+    if (p.authors) {
+      var au = document.createElement('p');
+      au.className = 'authors';
+      au.textContent = p.authors;
+      li.appendChild(au);
+    }
+    if (p.summary) {
+      var s = document.createElement('p');
+      s.className = 'summary';
+      s.textContent = p.summary;
+      li.appendChild(s);
+    }
+
+    if (Array.isArray(p.links) && p.links.length) {
+      var ul = document.createElement('ul');
+      ul.className = 'links';
+      p.links.forEach(function (l) {
+        if (!l || !l.href) return;
+        var item = document.createElement('li');
+        var a = document.createElement('a');
+        a.href = l.href;
+        a.textContent = l.label || l.href;
+        if (/^https?:/i.test(l.href)) a.rel = 'noopener';
+        item.appendChild(a);
+        ul.appendChild(item);
+      });
+      if (ul.children.length) li.appendChild(ul);
+    } else if (p.note) {
+      var n = document.createElement('p');
+      n.className = 'links note';
+      n.textContent = p.note;
+      li.appendChild(n);
+    }
+
+    list.appendChild(li);
+  });
+})();
+</script>
+</body>
+</html>

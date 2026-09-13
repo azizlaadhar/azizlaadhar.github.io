@@ -1,0 +1,88 @@
+/* Plain white page. No webfonts, no animation, no dark mode. */
+
+:root {
+  --ink:  #111111;
+  --soft: #555555;
+  --rule: #dddddd;
+  --link: #0b4f8a;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0 auto;
+  max-width: 44rem;
+  padding: 3rem 1.5rem 5rem;
+  background: #ffffff;
+  color: var(--ink);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+a { color: var(--link); }
+a:hover { text-decoration: none; }
+
+:focus-visible { outline: 2px solid var(--link); outline-offset: 2px; }
+
+.skip { position: absolute; left: -9999px; }
+.skip:focus { left: 1rem; top: 1rem; background: #fff; padding: 0.5rem; }
+
+/* ---- header ---- */
+h1 {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.tagline {
+  margin: 0.5rem 0 0;
+  color: var(--soft);
+}
+
+.toplinks { margin: 0.75rem 0 0; }
+.toplinks a { margin-right: 1rem; }
+
+/* ---- sections ---- */
+h2 {
+  margin: 3rem 0 0;
+  padding-bottom: 0.4rem;
+  border-bottom: 1px solid var(--rule);
+  font-size: 1.05rem;
+  font-weight: 600;
+}
+
+/* ---- paper list ---- */
+.list { list-style: none; margin: 0; padding: 0; }
+
+.entry { padding: 1.5rem 0; border-bottom: 1px solid var(--rule); }
+
+.title { margin: 0; font-size: 1rem; font-weight: 600; line-height: 1.4; }
+
+.meta    { margin: 0.3rem 0 0; color: var(--soft); font-size: 0.875rem; }
+.authors { margin: 0.2rem 0 0; color: var(--soft); font-size: 0.875rem; }
+.summary { margin: 0.6rem 0 0; }
+
+.links { margin: 0.6rem 0 0; padding: 0; list-style: none; }
+.links li { display: inline; }
+.links li::after { content: "   "; white-space: pre; }
+
+.note { color: var(--soft); font-size: 0.875rem; font-style: italic; }
+
+/* ---- about / footer ---- */
+.prose p { margin: 1rem 0 0; }
+.contact a { margin-right: 1rem; }
+
+footer {
+  margin-top: 3rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--rule);
+  color: var(--soft);
+  font-size: 0.875rem;
+}
+footer p { margin: 0; }
+
+/* ---- 404 ---- */
+.notfound { padding: 4rem 0; }
