@@ -1,7 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
-  <rect width="32" height="32" fill="#E9ECEE"/>
-  <path d="M2 20 C8 20 8 8 16 8 C24 8 24 20 30 20 L30 26 C24 26 24 14 16 14 C8 14 8 26 2 26 Z"
-        fill="#0B6E6A" fill-opacity="0.18"/>
-  <path d="M2 23 C8 23 8 11 16 11 C24 11 24 23 30 23"
-        fill="none" stroke="#0B6E6A" stroke-width="2.4" stroke-linecap="round"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <rect width="64" height="64" rx="14" fill="#2f6db3"/>
+  <text x="32" y="45" font-family="Inter, Helvetica, Arial, sans-serif" font-size="36"
+        font-weight="600" fill="#ffffff" text-anchor="middle">AL</text>
 </svg>
