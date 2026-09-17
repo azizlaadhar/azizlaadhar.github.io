@@ -1,4 +1,4 @@
-/* Renders the sidebar, bio, news and publication lists from data.js. */
+/* Renders the sidebar, bio and publication lists from data.js. */
 (function () {
   'use strict';
 
@@ -13,6 +13,46 @@
     return '<a href="' + href + '" aria-label="' + label + '" title="' + label + '"' +
            (/^https?:/i.test(href) ? ' rel="noopener" target="_blank"' : '') +
            '><svg viewBox="0 0 16 16" aria-hidden="true" focusable="false">' + paths + '</svg></a>';
+  }
+
+
+  /* Research icons — 24x24, stroked, inherit currentColor. */
+  var ICONS_RESEARCH = {
+    /* screen with measurement bars: quantitative inference from video */
+    measure: '<rect x="2.5" y="4" width="19" height="13.5" rx="2.2"/>' +
+             '<path d="M7 14.2v-3.4M11.5 14.2V8M16 14.2v-2.2M8.5 20.5h7"/>',
+    /* stacked planes: latent representation layers */
+    layers:  '<path d="M12 2.8 2.8 7.6 12 12.4l9.2-4.8L12 2.8Z"/>' +
+             '<path d="m2.8 12.2 9.2 4.8 9.2-4.8"/><path d="m2.8 16.4 9.2 4.8 9.2-4.8"/>',
+    /* wavy strata: subsurface layers */
+    strata:  '<path d="M2.8 7c3-2.1 6.1 2.1 9.2 0s6.2-2.1 9.2 0"/>' +
+             '<path d="M2.8 12c3-2.1 6.1 2.1 9.2 0s6.2-2.1 9.2 0"/>' +
+             '<path d="M2.8 17c3-2.1 6.1 2.1 9.2 0s6.2-2.1 9.2 0"/>',
+    /* crossing supply and demand curves on an axis */
+    curves:  '<path d="M3.5 3v17.5H21"/>' +
+             '<path d="M6 18.2c4.2-.2 9-4.2 12.6-11.4"/>' +
+             '<path d="M6 7.4c4.2.2 9 4.2 12.6 11.4"/>',
+    /* connected nodes: graph policy over a route */
+    graph:   '<circle cx="4.8" cy="17.8" r="2.3"/><circle cx="12" cy="5.6" r="2.3"/>' +
+             '<circle cx="19.2" cy="15.4" r="2.3"/>' +
+             '<path d="m6.4 15.9 4.1-8M13.6 7.3l4.3 6.1M7.1 17.2l9.8-1.4"/>',
+    /* branching population: evolved prompt layers */
+    branch:  '<circle cx="4.6" cy="12" r="2.1"/><circle cx="19.4" cy="5.8" r="2.1"/>' +
+             '<circle cx="19.4" cy="18.2" r="2.1"/>' +
+             '<path d="M6.7 12h4.1l6.6-5.4M10.8 12l6.6 5.4"/>',
+    /* speech bubble: retrieval-augmented chat */
+    chat:    '<path d="M21 11.6a8.3 8.3 0 0 1-8.9 8.4 9 9 0 0 1-3.7-.8L3.2 21l1.9-4.9A8.3 8.3 0 0 1 12.1 3.2 8.3 8.3 0 0 1 21 11.6Z"/>' +
+             '<path d="M8.6 11.7h.01M12.1 11.7h.01M15.6 11.7h.01"/>',
+    /* folded map: satellite road segmentation */
+    map:     '<path d="m9 3.6-6 2.6v14.2l6-2.6 6 2.6 6-2.6V3.6l-6 2.6-6-2.6Z"/>' +
+             '<path d="M9 3.6v14.2M15 6.2v14.2"/>'
+  };
+
+  function researchIcon(key) {
+    var p = ICONS_RESEARCH[key] || ICONS_RESEARCH.layers;
+    return '<span class="pub-icon" aria-hidden="true">' +
+           '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" ' +
+           'stroke-linecap="round" stroke-linejoin="round">' + p + '</svg></span>';
   }
 
   /* ---------- sidebar ---------- */
@@ -45,39 +85,10 @@
     bio.innerHTML = BIO.map(function (p) { return '<p>' + p + '</p>'; }).join('');
   }
 
-  /* ---------- news ---------- */
-
-  var news = document.getElementById('news');
-  if (news && typeof NEWS !== 'undefined') {
-    news.innerHTML = NEWS.map(function (n) {
-      return '<div class="news-item' + (n.extra ? ' extra' : '') + '">' +
-               '<div class="news-date">' + n.date + '</div>' +
-               '<div class="news-body">' + n.body + '</div>' +
-             '</div>';
-    }).join('');
-
-    var hidden = news.querySelectorAll('.news-item.extra');
-    var btn = document.getElementById('news-more');
-    if (btn) {
-      if (!hidden.length) {
-        btn.remove();
-      } else {
-        btn.textContent = 'Show ' + hidden.length + ' more';
-        btn.setAttribute('aria-expanded', 'false');
-        btn.addEventListener('click', function () {
-          var open = btn.getAttribute('aria-expanded') === 'true';
-          hidden.forEach(function (el) { el.classList.toggle('show', !open); });
-          btn.setAttribute('aria-expanded', String(!open));
-          btn.textContent = open ? 'Show ' + hidden.length + ' more' : 'Show less';
-        });
-      }
-    }
-  }
-
   /* ---------- publications ---------- */
 
   function card(p) {
-    var html = '<article class="pub">';
+    var html = '<article class="pub has-icon">' + researchIcon(p.icon) + '<div class="pub-body">';
 
     if (p.badges && p.badges.length) {
       html += '<div class="badges">' + p.badges.map(function (b) {
@@ -98,12 +109,38 @@
     if (p.note) bits.push('<span>' + p.note + '</span>');
     if (bits.length) html += '<div class="linkrow">' + bits.join('') + '</div>';
 
+    return html + '</div></article>';
+  }
+
+  function tile(p) {
+    var html = '<article class="pub tile">';
+
+    html += '<div class="tile-head">' + researchIcon(p.icon);
+    if (p.badges && p.badges.length) {
+      html += '<div class="badges">' + p.badges.map(function (b) {
+        return '<span class="badge' + (b.alt ? ' alt' : '') + '">' + b.text + '</span>';
+      }).join('') + '</div>';
+    }
+    html += '</div>';
+
+    html += '<h3>' + p.title + '</h3>';
+    if (p.venue) html += '<p class="venue">' + p.venue + '</p>';
+    if (p.blurb || p.abstract) html += '<p class="abstract">' + (p.blurb || p.abstract) + '</p>';
+
+    var bits = (p.links || []).map(function (l) {
+      return '<a href="' + l.href + '"' +
+             (/^https?:/i.test(l.href) ? ' rel="noopener" target="_blank"' : '') +
+             '>' + l.label + '</a>';
+    });
+    if (p.note) bits.push('<span>' + p.note + '</span>');
+    if (bits.length) html += '<div class="linkrow">' + bits.join('') + '</div>';
+
     return html + '</article>';
   }
 
   var sel = document.getElementById('selected-pubs');
   if (sel && typeof PUBLICATIONS !== 'undefined') {
-    sel.innerHTML = PUBLICATIONS.filter(function (p) { return p.selected; }).map(card).join('');
+    sel.innerHTML = PUBLICATIONS.filter(function (p) { return p.selected; }).map(tile).join('');
   }
 
   var all = document.getElementById('all-pubs');
