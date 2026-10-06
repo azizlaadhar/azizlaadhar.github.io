@@ -179,6 +179,61 @@ const PUBLICATIONS = [
   },
 
   {
+    year: 2025,
+    selected: false,
+    icon: "layers",
+    badges: [{ text: "Course project" }, { text: "Financial NLP", alt: true }],
+    title: "Multimodal stock-return prediction from earnings-call sentiment",
+    authors: `Léon, Kilian, Arthur, Lauryne, <span class="me">Aziz Laadhar</span>.`,
+    venue: "Group course project, 2025.",
+    abstract: `Compared PyTorch LSTMs for next-quarter stock returns using eight-quarter histories
+      of Compustat/CRSP firm characteristics. Structured inputs combined 32 PCA components fitted
+      on the training data with quarter indicators; the extended model added FinBERT sentiment
+      from earnings-call transcripts. On a chronological 75/25 split, reported test MSE fell
+      from 0.0843 to 0.0790 and MAE from 0.2112 to 0.2036. Directional accuracy remained
+      unchanged at 57.49% for both models.`,
+    links: [
+      { label: "PDF", href: "papers/multimodal-stock-return-prediction-2025.pdf" }
+    ]
+  },
+
+  {
+    year: 2025,
+    selected: false,
+    icon: "curves",
+    badges: [{ text: "Course project" }, { text: "EPFL", alt: true }],
+    title: "The VIX and related derivatives",
+    authors: `<span class="me">Aziz Laadhar</span>, Elyes Fares Trabelsi, Lucas Simonnet,
+      Najmeddine Abbassi.`,
+    venue: "FIN-404 Derivatives, EPFL, Spring 2025. Prof. Julien Hugonnier.",
+    abstract: `Coursework on volatility derivatives, covering Carr–Madan static replication,
+      the option-strip basis of VIX, and square-root stochastic-variance models for variance
+      and VIX futures. Explored maturity and parameter sensitivities, numerical pricing,
+      and calibration to a supplied cross-section of market settlements.`,
+    links: [
+      { label: "Code", href: "https://github.com/najabba/derivatives_project_2025" }
+    ]
+  },
+
+  {
+    year: 2024,
+    selected: false,
+    icon: "curves",
+    badges: [{ text: "Course project" }, { text: "Quantitative finance", alt: true }],
+    title: "Equity factor strategies and portfolio risk attribution",
+    authors: `Mohamed Hédi Hidri, Yanis Seddik, Yacine Chaouch,
+      <span class="me">Aziz Laadhar</span>.`,
+    venue: "Investment project report, June 2024.",
+    abstract: `Constructed betting-against-beta, momentum and idiosyncratic-volatility strategies
+      from historical CRSP equity returns. Estimated market betas and residual volatility through
+      rolling five-year regressions, compared equal- and value-weighted decile portfolios, and
+      combined strategies using equal and inverse-volatility weights. Evaluated market, industry
+      and Fama–French factor exposures, then examined industry hedging and sector-wise portfolio
+      construction.`,
+    links: []
+  },
+
+  {
     year: 2024,
     selected: false,
     icon: "chat",
