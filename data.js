@@ -66,8 +66,7 @@ const PUBLICATIONS = [
       trained humans disagree about, so scores are calibrated to measurement noise and human error
       rather than to a single ground truth. Agents turn out to be badly overconfident: nominal 95%
       intervals covered 29% of 66 trials, with expected calibration error 0.32 across 1,872
-      predictions. I build the evaluation layer; it scores BehaveAgent, the lab's agent, which I did
-      not author.`,
+      predictions. I build the evaluation layer; it scores BehaveAgent, the lab's agent.`,
     links: [
       { label: "BehaveAgent preprint", href: "https://www.biorxiv.org/content/10.1101/2025.05.15.653585v1" },
       { label: "BehaveAgent code", href: "https://github.com/LiuLab-Bioelectronics-Harvard/BehaveAgent" }
