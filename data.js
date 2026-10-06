@@ -21,8 +21,8 @@ const SITE = {
   email:    "aziz_laadhar@seas.harvard.edu",
   github:   "https://github.com/azizlaadhar",
   linkedin: "https://www.linkedin.com/in/aziz-laadhar",
-  cv:       "assets/Aziz_Laadhar_CV.pdf",
-  photo:    "assets/aziz.jpg?v=20261006-full"
+  cv:       "assets/Aziz_Laadhar_CV.pdf?v=20261006-resume",
+  photo:    "assets/aziz.jpg?v=20261006-resume"
 };
 
 const BIO = [
@@ -36,8 +36,9 @@ const BIO = [
 
   `Before that I was a machine learning researcher at
    <a href="https://www.slb.com/" rel="noopener">SLB</a>'s Schlumberger-Doll Research in Cambridge,
-   working on physics-constrained inversion of electromagnetic logging data; a quantitative analyst on a
-   European power and gas desk, forecasting day-ahead supply and demand curves; and a research assistant
+   working on physics-constrained electromagnetic resistivity inversion; a quantitative research analyst
+   at Sirius Energy SA, working on day-ahead power forecasting, import-ceiling inference and
+   market-clearing backtests; and a research assistant
    at EPFL's <a href="https://www.epfl.ch/labs/vita/" rel="noopener">VITA lab</a> with Prof. Alexandre
    Alahi, on graph-based reinforcement learning for constrained vehicle routing.`,
 
@@ -98,18 +99,17 @@ const PUBLICATIONS = [
     selected: true,
     icon: "strata",
     badges: [{ text: "Industrial research" }, { text: "SLB", alt: true }],
-    title: "Physics-constrained deep learning for 2D electromagnetic resistivity inversion",
+    title: "Physics-constrained neural modelling for electromagnetic resistivity inversion",
     authors: `<span class="me">Aziz Laadhar</span>, Schlumberger-Doll Research, Mathematical Physics and Modeling.`,
-    venue: "Industrial research, SLB Schlumberger-Doll Research, Cambridge MA, 2025–2026.",
-    blurb: `The forward simulator embedded as a data-consistency penalty, so one forward pass replaces
-      tens to hundreds of iterative solver steps.`,
-    abstract: `Recovering a 2D subsurface resistivity image from electromagnetic logging channels. The
-      forward model is a proprietary 2.5D solver that is neither differentiable nor callable during
-      training, so it is embedded as a data-consistency penalty through a differentiable surrogate and
-      the loss splits into a model misfit and a data misfit. Structure-preserving losses — Sobel-based,
-      edge-weighted — keep layer boundaries sharp where plain MSE blurs them, and adaptive sampling
-      handles the noise. Median MSE fell from 0.081 to 0.070 against the CNN baseline, with PDE
-      residuals down 35%, at one forward pass versus tens to hundreds of iterative solver steps.`,
+    venue: "Machine Learning Researcher — Mathematical Physics and Modeling, SLB Schlumberger-Doll Research, Cambridge, MA, July 2025–February 2026.",
+    blurb: `A learned forward-surrogate penalty and structure-preserving losses reduced median
+      reconstruction error by 14.4% versus a supervised CNN baseline.`,
+    abstract: `Built a physics-constrained neural model for 2D electromagnetic resistivity inversion,
+      adding a learned forward-surrogate data-consistency penalty during training. Median
+      reconstruction error fell by 14.4% versus a supervised CNN baseline. Developed
+      structure-preserving losses and adaptive sampling for noisy inverse problems, reducing
+      surrogate data-misfit residuals by 35%, and stress-tested robustness under noise and
+      distribution shift through systematic ablations.`,
     links: [],
     note: "No public report — proprietary"
   },
@@ -119,17 +119,26 @@ const PUBLICATIONS = [
     selected: true,
     icon: "curves",
     badges: [{ text: "Industrial research" }, { text: "Energy markets", alt: true }],
-    title: "Functional autoregression for day-ahead supply and demand curves",
+    title: "Day-ahead power forecasting and market-clearing analysis",
     authors: `<span class="me">Aziz Laadhar</span>, Sirius Energy SA.`,
-    venue: "Industrial research, European power and gas trading, 2024–2025.",
-    blurb: `Forecasting the whole hourly supply and demand curve as a 750k-variable cone program,
-      then clearing it to get the price.`,
-    abstract: `Forecasting the <em>whole</em> hourly supply and demand curve rather than a single price,
-      from 25M+ bids on a 500-point price grid. The curve has to stay monotone, so the curve operators
-      are estimated as a 750k-variable second-order cone program in MOSEK Fusion. Forecast curves are
-      then cleared through the desk's EUPHEMIA market-coupling replica to produce a price: out-of-sample
-      hourly MAE fell from €12.4 to €9.2/MWh against the desk's model, with 79% lower maximum absolute
-      error.`,
+    venue: "Quantitative Research Analyst — Power and Gas Trading, Sirius Energy SA, Lugano, Switzerland, July 2024–February 2025.",
+    blurb: `Forecasting supply and demand curves, recovering Italy's import ceiling, and attributing
+      market-clearing errors through constrained optimisation.`,
+    abstract: `Developed a functional autoregressive supply/demand-curve model to forecast day-ahead
+      power markets from 25M+ bids on a 500-point price grid, estimating three-lag curve operators
+      through 750k-variable second-order cone programs. Converting forecast curves into
+      clearing-price forecasts through the desk's EUPHEMIA market-coupling replica reduced
+      out-of-sample hourly MAE from €9.2 to €6.7/MWh versus the desk's model, with 59.5% lower
+      maximum absolute error.<br><br>
+      Reverse-engineered Italy's undocumented D+1 import ceiling with a two-stage random-forest
+      hurdle model using 42 features. Rolling-window validation yielded F1 0.90 and conditional
+      R² 0.89 versus 0.72 for OLS; the model was deployed daily to traders.<br><br>
+      Built a counterfactual day-ahead market-clearing backtest that re-solved the market under
+      alternative inputs to attribute zonal price and net-position errors to offer curves,
+      block orders and transfer capacities. Labelled the generation technology of 34% of 658k
+      unlabelled power-market offers through a MILP over 743 hours; residual offers revealed
+      latent PV supply that tracked solar generation and concentrated at the low-price end
+      of the stack.`,
     links: [],
     note: "No public report — proprietary"
   },
@@ -141,15 +150,14 @@ const PUBLICATIONS = [
     badges: [{ text: "Under review" }, { text: "Transportation Research Part C", alt: true }],
     title: "The Transformer Network for the Dial-a-Ride Problem",
     authors: `Lucas Gruaz, <span class="me">Aziz Laadhar</span>, Aoyu Gong, Benedek Harsanyi.`,
-    venue: "Under review, Transportation Research Part C. EPFL VITA lab, 2024.",
-    blurb: `A graph Transformer that learns to route under time windows — and the constraint violations
-      that only masking, not penalties, could fix.`,
-    abstract: `A graph Transformer policy for a routing problem with time windows, ride-time limits and
-      capacity. Trained by imitation on 50k Gurobi solutions, the policy came within a 2.67% cost gap of
-      exact optimisation on 100 held-out instances — while systematically violating the time windows.
-      Feasibility-masked PPO fixed it by making the violations unrepresentable rather than merely
-      penalised, cutting ride-time violations from 1.61 to 0.33, and the distilled policy runs at
-      1.55 s per instance at a 2.37% cost gap.`,
+    venue: "Under review, Transportation Research Part C. Research Assistant, EPFL VITA lab, Lausanne, Switzerland, September 2022–June 2023. Advisor: Prof. Alexandre Alahi.",
+    blurb: `A graph Transformer trained by imitation, then feasibility-masked PPO, for constrained
+      routing, with vectorised per-user encoding cutting inference from 3.13 to 1.55 seconds.`,
+    abstract: `Trained a graph Transformer policy for the constrained Dial-a-Ride Problem by imitation
+      on 50k Gurobi solutions, achieving a 2.67% cost gap to exact optimisation on 100 held-out
+      instances. Trained a feasibility-masked reinforcement-learning policy using PPO, reducing
+      violated ride-time windows from 1.61 to 0.33 per instance at a 2.37% cost gap. Vectorising
+      the Transformer's per-user encoding cut inference from 3.13 to 1.55 seconds per instance.`,
     links: [
       { label: "PDF", href: "papers/darp-transformer-2024.pdf" },
       { label: "Code", href: "https://github.com/aygong/DARP" }
