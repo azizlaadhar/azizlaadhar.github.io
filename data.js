@@ -17,9 +17,7 @@
 
 const SITE = {
   name:     "Aziz Laadhar",
-  role:     "M.Sc. Data Science, EPFL<br>Research fellow, " +
-            "<a href=\"https://kempnerinstitute.harvard.edu/\" rel=\"noopener\">Kempner Institute</a>, " +
-            "Harvard University",
+  role:     "M.Sc. Data Science, EPFL<br>Na Li Lab, Harvard University",
   email:    "aziz_laadhar@seas.harvard.edu",
   github:   "https://github.com/azizlaadhar",
   linkedin: "https://www.linkedin.com/in/aziz-laadhar",
@@ -34,9 +32,7 @@ const BIO = [
    <strong>BEHAVE</strong> — a 65-task benchmark that asks whether an AI agent can produce the number
    a behavioural researcher would have computed by hand.`,
 
-  `I am now starting a research fellowship at the
-   <a href="https://kempnerinstitute.harvard.edu/" rel="noopener">Kempner Institute</a> at Harvard
-   University with Prof. Na Li.`,
+  `I am now in the Na Li Lab at Harvard University.`,
 
   `Before that I was a machine learning researcher at
    <a href="https://www.slb.com/" rel="noopener">SLB</a>'s Schlumberger-Doll Research in Cambridge,
