@@ -163,7 +163,7 @@ const PUBLICATIONS = [
   },
 
   {
-    year: 2025,
+    year: 2026,
     selected: false,
     icon: "branch",
     badges: [{ text: "Project" }, { text: "Harvard", alt: true }],
