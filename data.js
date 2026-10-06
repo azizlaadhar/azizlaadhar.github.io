@@ -264,6 +264,25 @@ const PUBLICATIONS = [
       { label: "PDF", href: "papers/road-segmentation-2024.pdf" },
       { label: "Code", href: "https://github.com/azizlaadhar/Road-Segmentation-Project" }
     ]
+  },
+
+  {
+    year: 2023,
+    selected: false,
+    icon: "curves",
+    badges: [{ text: "Course project" }, { text: "EPFL", alt: true }],
+    title: "Dynamics of the EUR/USD exchange rate during 2022",
+    authors: `<span class="me">Aziz Laadhar</span>, Mohamed Hédi Hidri, Youssef Mamlouk,
+      Ali Ridha Mrad, Chady Bensaid, Walid Sofiane, Malo Lemmel, Yanis Seddik.`,
+    venue: "GBE group project, EPFL, 2023.",
+    abstract: `Examined the EUR/USD exchange rate during 2022 through interest-rate parity
+      and money-market frameworks. Compared exchange-rate, policy-rate, inflation and monetary
+      series to discuss divergent Federal Reserve and European Central Bank policies, the
+      European energy crisis, and the war in Ukraine as context for the euro's depreciation
+      and subsequent recovery.`,
+    links: [
+      { label: "PDF", href: "papers/eur-usd-gbe-group-project.pdf" }
+    ]
   }
 
 ];
