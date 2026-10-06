@@ -66,7 +66,7 @@
     if (SITE.cv)       links.push(icon(ICONS.cv,       'CV',       SITE.cv));
 
     side.innerHTML =
-      (SITE.photo ? '<img class="portrait" src="' + SITE.photo + '" alt="' + SITE.name + '" width="260" height="195">' : '') +
+      (SITE.photo ? '<img class="portrait" src="' + SITE.photo + '" alt="' + SITE.name + '" width="3283" height="5368">' : '') +
       '<div class="sidebar-text">' +
         '<h1>' + SITE.name + '</h1>' +
         '<p class="role">' + (SITE.role || '') + '</p>' +

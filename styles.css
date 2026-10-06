@@ -166,9 +166,6 @@ a:hover { text-decoration: underline; text-underline-offset: 2px; }
 .portrait {
   width: 100%;
   height: auto;
-  aspect-ratio: 4 / 3;
-  object-fit: cover;
-  object-position: center 28%;
   border-radius: var(--radius);
   background: var(--tag-bg);
   box-shadow: var(--shadow);

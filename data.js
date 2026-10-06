@@ -22,7 +22,7 @@ const SITE = {
   github:   "https://github.com/azizlaadhar",
   linkedin: "https://www.linkedin.com/in/aziz-laadhar",
   cv:       "assets/Aziz_Laadhar_CV.pdf",
-  photo:    "assets/aziz.jpg"
+  photo:    "assets/aziz.jpg?v=20261006-full"
 };
 
 const BIO = [
