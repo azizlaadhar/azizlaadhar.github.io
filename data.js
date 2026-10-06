@@ -168,10 +168,10 @@ const PUBLICATIONS = [
     year: 2025,
     selected: false,
     icon: "branch",
-    badges: [{ text: "Project" }],
+    badges: [{ text: "Project" }, { text: "Harvard", alt: true }],
     title: "PromptNET: a layered prompt network evolved by genetic algorithm",
-    authors: `<span class="me">Aziz Laadhar</span>.`,
-    venue: "Independent research, 2025.",
+    authors: `<span class="me">Aziz Laadhar</span> (contributor).`,
+    venue: "Research at Harvard University.",
     abstract: `Each layer holds a population of prompt-nodes with a fixed role; a path picks one node per
       layer and an image flows through a vision-language model sequentially, scored against ground truth.
       Per-node fitness is the average score of every path that node took part in, and mutation is
