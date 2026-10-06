@@ -165,9 +165,10 @@ a:hover { text-decoration: underline; text-underline-offset: 2px; }
 
 .portrait {
   width: 100%;
-  aspect-ratio: 3 / 4;
+  height: auto;
+  aspect-ratio: 4 / 3;
   object-fit: cover;
-  object-position: center 18%;
+  object-position: center 28%;
   border-radius: var(--radius);
   background: var(--tag-bg);
   box-shadow: var(--shadow);
@@ -388,7 +389,6 @@ footer {
     align-items: center;
   }
   .sidebar-text { min-width: 0; }
-  .portrait { aspect-ratio: 1 / 1; }
   .sidebar h1 { margin-top: 0; font-size: 20px; }
   .iconrow { margin-top: 12px; }
   .topbar-inner { padding: 10px 16px; gap: 8px; }
@@ -402,7 +402,7 @@ footer {
 
 @media (max-width: 340px) {
   .sidebar { grid-template-columns: 1fr; justify-items: start; }
-  .portrait { max-width: 150px; aspect-ratio: 3 / 4; }
+  .portrait { max-width: 150px; }
 }
 
 @media print {
